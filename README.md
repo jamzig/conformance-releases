@@ -1,117 +1,115 @@
-# JamZig Conformance Releases
+# JamZig⚡ Conformance Test Binaries
 
-## About JamZig
+This repository contains the latest JamZig⚡ conformance testing binaries for validating protocol implementations.
 
-JamZig is a Zig implementation of the JAM (Join-Accumulate Machine) protocol, designed for high-performance blockchain consensus and computation.
+## Build Information
 
-- **Website:** [jamzig.dev](https://jamzig.dev)
-- **Twitter:** [@jamzig_dev](https://x.com/jamzig_dev)
-- **Main Repository:** [JamZig on GitHub](https://github.com/jamzig/jamzig)
+- **Git SHA:** `6bb74b3`
+- **Build Date:** `2025-07-11T21:57:58Z`
 
-## Purpose of Conformance Releases
+## Contents
 
-The JAM protocol requires precise implementation across different clients to ensure network consensus. These conformance releases serve multiple critical purposes:
+This repository includes binaries for two parameter sets:
 
-1. **Protocol Validation**: Enable different JAM implementations to validate their behavior against a reference implementation
-2. **Cross-Platform Testing**: Provide pre-built binaries for multiple platforms to facilitate testing without compilation
-3. **Regression Detection**: Track protocol compliance across different versions and detect regressions
-4. **Interoperability**: Ensure different JAM implementations can interact correctly
+- **`tiny/`** - Built with TINY_PARAMS for quick testing and development
+- **`full/`** - Built with FULL_PARAMS for production conformance testing
 
-## Directory Structure
+Each parameter set includes binaries for:
+- Linux x86_64
+- Linux aarch64
+- macOS aarch64
 
-```
-jamzig-conformance-releases/
-├── README.md                   # This file
-├── releases/
-│   ├── latest/                # Symlink to most recent release
-│   └── YYYYMMDDHHMM_GITSHA/  # Individual releases (e.g., 202507030146_1865594)
-│       ├── README.md          # Release-specific documentation
-│       ├── RELEASE_INFO.json  # Metadata about the release
-│       ├── run_conformance_test.sh  # Main test runner script
-│       ├── tiny/              # Tiny parameter set builds
-│       │   ├── params.json    # JAM protocol parameters used
-│       │   ├── linux/
-│       │   │   ├── x86_64/   # Linux x86_64 binaries
-│       │   │   └── aarch64/  # Linux ARM64 binaries
-│       │   └── macos/
-│       │       └── aarch64/  # macOS ARM64 binaries
-│       └── full/              # Full parameter set builds
-│           ├── params.json    # JAM protocol parameters used
-│           ├── linux/
-│           │   ├── x86_64/
-│           │   └── aarch64/
-│           └── macos/
-│               └── aarch64/
-```
+## Fuzzer
 
-### Binary Components
+The "fuzzer" has been added as a simple test to verify that the "target" is
+functional. This fuzzer cannot be used to verify compliance with any standards
+or requirements.
 
-Each platform directory contains:
-- `jam_conformance_target` - The server that implements JAM protocol state transitions
-- `jam_conformance_fuzzer` - The client that generates test blocks and validates responses
-- `run_conformance_test.sh` - Symlink to the main test runner
-
-### Parameter Sets
-
-- **Tiny**: Reduced parameters for quick testing and development (faster block times, smaller validator sets)
-- **Full**: Production parameters matching the JAM graypaper specifications
-
-## Using the Releases
-
+## Running Conformance Tests
 ### Quick Start
 
-1. Download or clone this repository
-2. Navigate to the latest release: `cd releases/latest`
-3. Run the conformance test: `./run_conformance_test.sh`
-
-The script will automatically detect your platform and run the appropriate binaries.
-
-### Manual Testing
-
-For more control, you can run the components separately:
+From the root directory, run:
 
 ```bash
-# Start the target server
-./tiny/linux/x86_64/jam_conformance_target --socket /tmp/jam_conformance.sock
-
-# In another terminal, run the fuzzer
-./tiny/linux/x86_64/jam_conformance_fuzzer --socket /tmp/jam_conformance.sock --blocks 100
+./run_conformance_test.sh
 ```
 
-## Release Process
+This will automatically:
+1. Detect your platform
+2. Start the conformance target server
+3. Run the fuzzer against it
+4. Generate a conformance report
 
-New releases are created automatically when changes are made to the JamZig implementation:
+### Manual Execution
 
-1. **Build Phase**: The release script builds binaries for all supported platforms using Zig's cross-compilation
-2. **Parallel Compilation**: GNU parallel is used to build multiple configurations simultaneously
-3. **Parameter Export**: Protocol parameters are extracted and saved as JSON
-4. **Release Package**: All artifacts are organized into the directory structure shown above
-5. **Git Commit**: The release is committed to this repository with metadata
+You can also run the components separately:
 
-### Release Naming
+1. **Start the target server:**
+   ```bash
+   # For tiny params on Linux x86_64
+   ./tiny/linux/x86_64/jam_conformance_target --socket /tmp/jam_conformance.sock
 
-Releases follow the format: `YYYYMMDDHHMM_GITSHA`
-- Date/time for chronological ordering
-- Git SHA for traceability to source code
+   # For full params on macOS aarch64
+   ./full/macos/aarch64/jam_conformance_target --socket /tmp/jam_conformance.sock
+   ```
 
-## Conformance Testing Protocol
+2. **Run the fuzzer:**
+   ```bash
+   # Basic run with 100 blocks
+   ./tiny/linux/x86_64/jam_conformance_fuzzer --socket /tmp/jam_conformance.sock --blocks 100
 
-The conformance test uses a client-server model over Unix sockets:
+   # With specific seed for reproducible testing
+   ./full/macos/aarch64/jam_conformance_fuzzer --socket /tmp/jam_conformance.sock --seed 12345 --blocks 500
 
-[FUZZ PROTOCOL](https://github.com/davxy/jam-stuff/blob/main/fuzz-proto/README.md)
+   # Save report to file
+   ./tiny/linux/x86_64/jam_conformance_fuzzer --socket /tmp/jam_conformance.sock --output report.json
+   ```
 
-## Contributing
+### Command Line Options
 
-To contribute to JamZig or report conformance issues:
+**Target Server Options:**
+- `--socket <path>` - Unix socket path (default: /tmp/jam_conformance.sock)
+- `--port <number>` - TCP port for network mode (optional)
+- `--verbose` - Enable verbose logging
+- `--trace-scope <scope>` - Enable tracing for specific scopes
 
-1. Visit the main [JamZig repository](https://github.com/jamzig/jamzig)
-2. Check existing issues or create new ones
-3. Follow the project on [Twitter](https://x.com/jamzig_dev) for updates
+**Fuzzer Options:**
+- `--socket <path>` - Unix socket path to connect to
+- `--seed <number>` - Random seed for deterministic execution
+- `--blocks <number>` - Number of blocks to process (default: 100)
+- `--output <file>` - Output report file (JSON format)
+- `--verbose` - Enable verbose output
 
-## License
+## Parameter Sets
 
-JamZig is open-source software. See the main repository for license details.
+The protocol parameters for each set are available in:
+- `tiny/params.json` - Parameters used for tiny builds
+- `full/params.json` - Parameters used for full builds
 
----
+These files contain all JAM protocol constants with their graypaper symbols (e.g., "E" for epoch_length, "C" for core_count).
 
-For technical details about the JAM protocol, refer to the [JAM Graypaper](https://graypaper.com).
+## Repository Structure
+
+```
+├── README.md               # This file
+├── RELEASE_INFO.json       # Build metadata
+├── run_conformance_test.sh # Main test runner script
+├── tiny/                   # Binaries built with TINY_PARAMS
+│   ├── params.json         # Protocol parameters
+│   ├── linux/
+│   │   ├── x86_64/
+│   │   └── aarch64/
+│   └── macos/
+│       └── aarch64/
+└── full/                   # Binaries built with FULL_PARAMS
+    ├── params.json         # Protocol parameters
+    ├── linux/
+    │   ├── x86_64/
+    │   └── aarch64/
+    └── macos/
+        └── aarch64/
+```
+
+## Support
+
+For issues or questions about the conformance test suite, please contact the JamZig⚡ team or file an issue in the repository.

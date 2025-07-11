@@ -1,0 +1,19 @@
+{
+    "type": "jam-conformance-release",
+    "date": "202507112357",
+    "git_sha": "6bb74b3",
+    "git_branch": "fuzzer",
+    "build_time": "2025-07-11T21:57:58Z",
+    "build_host": "fedora",
+    "build_host_target": "aarch64_linux",
+    "zig_version": "0.14.1",
+    "parallel_version": "GNU parallel 20241222",
+    "platforms": [
+        "linux/x86_64",
+        "linux/aarch64",
+        "macos/aarch64"
+    ],
+    "param_sets": ["tiny", "full"],
+    "parallel_builds": true,
+    "total_configurations": 6
+}

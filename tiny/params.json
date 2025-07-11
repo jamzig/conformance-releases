@@ -1,0 +1,257 @@
+{
+  "params_type": "TINY",
+  "parameters": {
+    "A": {
+      "name": "audit_tranche_period",
+      "value": 8,
+      "type": "u8",
+      "description": "The period, in seconds, between audit tranches"
+    },
+    "BI": {
+      "name": "min_balance_per_item",
+      "value": 10,
+      "type": "u64",
+      "description": "The additional minimum balance required per item of elective service state"
+    },
+    "BL": {
+      "name": "min_balance_per_octet",
+      "value": 1,
+      "type": "u64",
+      "description": "The additional minimum balance required per octet of elective service state"
+    },
+    "BS": {
+      "name": "basic_service_balance",
+      "value": 100,
+      "type": "u64",
+      "description": "The basic minimum balance which all services require"
+    },
+    "C": {
+      "name": "core_count",
+      "value": 2,
+      "type": "u16",
+      "description": "The total number of cores"
+    },
+    "D": {
+      "name": "preimage_expungement_period",
+      "value": 32,
+      "type": "u32",
+      "description": "The period in timeslots after which an unreferenced preimage may be expunged"
+    },
+    "E": {
+      "name": "epoch_length",
+      "value": 12,
+      "type": "u32",
+      "description": "The number of slots in an epoch"
+    },
+    "F": {
+      "name": "audit_bias_factor",
+      "value": 2,
+      "type": "u8",
+      "description": "The audit bias factor, expected additional auditors per no-show"
+    },
+    "GA": {
+      "name": "gas_alloc_accumulation",
+      "value": 10000000,
+      "type": "u64",
+      "description": "The total gas allocated to a core for Accumulation"
+    },
+    "GI": {
+      "name": "gas_alloc_is_authorized",
+      "value": 50000000,
+      "type": "u64",
+      "description": "The gas allocated to invoke a work-package Is-Authorized logic"
+    },
+    "GR": {
+      "name": "gas_alloc_refine",
+      "value": 5000000000,
+      "type": "u64",
+      "description": "The total gas allocated for a work-package Refine logic"
+    },
+    "GT": {
+      "name": "total_gas_alloc_accumulation",
+      "value": 3500000000,
+      "type": "u64",
+      "description": "The total gas allocated across all cores for Accumulation"
+    },
+    "H": {
+      "name": "recent_history_size",
+      "value": 8,
+      "type": "u16",
+      "description": "The size of recent history, in blocks"
+    },
+    "I": {
+      "name": "max_work_items_per_package",
+      "value": 16,
+      "type": "u16",
+      "description": "The maximum amount of work items in a package"
+    },
+    "J": {
+      "name": "max_number_of_dependencies_for_work_reports",
+      "value": 8,
+      "type": "u16",
+      "description": "The maximum amount of dependencies in a work report segment-root lookup dictionary and the number of pre-requisites for a work item"
+    },
+    "K": {
+      "name": "max_tickets_per_extrinsic",
+      "value": 3,
+      "type": "u16",
+      "description": "The maximum number of tickets which may be submitted in a single extrinsic"
+    },
+    "L": {
+      "name": "max_lookup_anchor_age",
+      "value": 14400,
+      "type": "u32",
+      "description": "The maximum age in timeslots of the lookup anchor"
+    },
+    "N": {
+      "name": "max_ticket_entries_per_validator",
+      "value": 3,
+      "type": "u16",
+      "description": "The number of ticket entries per validator"
+    },
+    "O": {
+      "name": "max_authorizations_pool_items",
+      "value": 8,
+      "type": "u16",
+      "description": "The maximum number of items in the authorizations pool"
+    },
+    "P": {
+      "name": "slot_period",
+      "value": 6,
+      "type": "u16",
+      "description": "The slot period, in seconds"
+    },
+    "Q": {
+      "name": "max_authorizations_queue_items",
+      "value": 80,
+      "type": "u16",
+      "description": "The maximum number of items in the authorizations queue"
+    },
+    "R": {
+      "name": "validator_rotation_period",
+      "value": 4,
+      "type": "u16",
+      "description": "The rotation period of validator-core assignments, in timeslots"
+    },
+    "S": {
+      "name": "max_accumulation_queue_entries",
+      "value": 1024,
+      "type": "u32",
+      "description": "The maximum number of entries in the accumulation queue"
+    },
+    "T": {
+      "name": "max_extrinsics_per_work_package",
+      "value": 128,
+      "type": "u16",
+      "description": "The maximum number of extrinsics in a work-package"
+    },
+    "U": {
+      "name": "work_replacement_period",
+      "value": 5,
+      "type": "u16",
+      "description": "The period in timeslots after which reported but unavailable work may be replaced"
+    },
+    "V": {
+      "name": "validators_count",
+      "value": 6,
+      "type": "u16",
+      "description": "The total number of validators"
+    },
+    "V_s": {
+      "name": "validators_super_majority",
+      "value": 5,
+      "type": "u32",
+      "description": "The number of validators required for a super-majority"
+    },
+    "WA": {
+      "name": "max_authorization_code_size",
+      "value": 64000,
+      "type": "u32",
+      "description": "The maximum size of authorization code in octets"
+    },
+    "WB": {
+      "name": "max_work_package_size_with_extrinsics",
+      "value": 12582912,
+      "type": "u32",
+      "description": "The maximum size of an encoded work-package together with its extrinsic data and import implications, in octets"
+    },
+    "WC": {
+      "name": "max_service_code_size",
+      "value": 4000000,
+      "type": "u32",
+      "description": "The maximum size of service code in octets"
+    },
+    "WE": {
+      "name": "erasure_coded_piece_size",
+      "value": 684,
+      "type": "u32",
+      "description": "The basic size of erasure-coded pieces in octets"
+    },
+    "WG": {
+      "name": "segment_size",
+      "value": 4104,
+      "type": "u16",
+      "description": "The size of a segment in octets (WP * WE)"
+    },
+    "WM": {
+      "name": "max_imports_per_work_package",
+      "value": 3072,
+      "type": "u16",
+      "description": "The maximum number of imports in a work-package"
+    },
+    "WP": {
+      "name": "erasure_coded_pieces_per_segment",
+      "value": 1026,
+      "type": "u32",
+      "description": "The number of erasure-coded pieces in a segment"
+    },
+    "WR": {
+      "name": "max_work_report_size",
+      "value": 49152,
+      "type": "u32",
+      "description": "The maximum size of an encoded work-report in octets"
+    },
+    "WT": {
+      "name": "transfer_memo_size",
+      "value": 128,
+      "type": "u32",
+      "description": "The size of a transfer memo in octets"
+    },
+    "WX": {
+      "name": "max_exports_per_work_package",
+      "value": 3072,
+      "type": "u16",
+      "description": "The maximum number of exports in a work-package"
+    },
+    "Y": {
+      "name": "ticket_submission_end_epoch_slot",
+      "value": 10,
+      "type": "u32",
+      "description": "The number of slots into an epoch at which ticket-submission ends"
+    },
+    "ZA": {
+      "name": "pvm_dynamic_address_alignment_factor",
+      "value": 2,
+      "type": "u8",
+      "description": "The pvm dynamic address alignment factor"
+    },
+    "ZI": {
+      "name": "pvm_program_init_input_size",
+      "value": 16777216,
+      "type": "u32",
+      "description": "The standard pvm program initialization input data size"
+    },
+    "ZP": {
+      "name": "pvm_program_init_page_size",
+      "value": 4096,
+      "type": "u16",
+      "description": "The standard pvm program initialization page size"
+    },
+    "ZQ": {
+      "name": "pvm_program_init_segment_size",
+      "value": 65536,
+      "type": "u32",
+      "description": "The standard pvm program initialization segment size"
+    }
+  }
+}

@@ -1,0 +1,1 @@
+../../run_conformance_test.sh
