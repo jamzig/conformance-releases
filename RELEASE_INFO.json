@@ -1,9 +1,9 @@
 {
     "type": "jam-conformance-release",
-    "date": "202507120001",
-    "git_sha": "5cdae83",
+    "date": "202507120204",
+    "git_sha": "2e504f3",
     "git_branch": "fuzzer",
-    "build_time": "2025-07-11T22:01:20Z",
+    "build_time": "2025-07-12T00:07:41Z",
     "build_host": "fedora",
     "build_host_target": "aarch64_linux",
     "zig_version": "0.14.1",
