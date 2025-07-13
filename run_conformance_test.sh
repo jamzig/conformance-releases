@@ -10,10 +10,7 @@ SOCKET_PATH="/tmp/jam_conformance.sock"
 NUM_BLOCKS=100
 SEED=""
 OUTPUT_FILE=""
-VERBOSE_LEVEL=0
-TRACE_LEVEL=""
-DEBUG_CODEC=false
-DEFAULT_QUIET_SCOPES="codec"
+VERBOSE_FLAGS=""
 PARAM_SET="tiny"  # Default to tiny
 
 # Parse command line arguments
@@ -40,15 +37,23 @@ while [[ $# -gt 0 ]]; do
             shift 2
             ;;
         -v|--verbose)
-            VERBOSE_LEVEL=$((VERBOSE_LEVEL + 1))
+            VERBOSE_FLAGS="$VERBOSE_FLAGS -v"
             shift
             ;;
         -vv)
-            VERBOSE_LEVEL=2
+            VERBOSE_FLAGS="-v -v"
             shift
             ;;
-        --debug-codec)
-            DEBUG_CODEC=true
+        -vvv)
+            VERBOSE_FLAGS="-v -v -v"
+            shift
+            ;;
+        -vvvv)
+            VERBOSE_FLAGS="-v -v -v -v"
+            shift
+            ;;
+        -vvvvv)
+            VERBOSE_FLAGS="-v -v -v -v -v"
             shift
             ;;
         -h|--help)
@@ -60,17 +65,16 @@ while [[ $# -gt 0 ]]; do
             echo "  -b, --blocks N       Number of blocks to process (default: 100)"
             echo "  -S, --seed N         Random seed for deterministic execution"
             echo "  -o, --output FILE    Output report file"
-            echo "  -v, --verbose        Enable verbose output (use -vv for trace level)"
-            echo "  --debug-codec        Include codec in debug output (normally suppressed)"
+            echo "  -v, --verbose        Enable verbose output (can be repeated up to 5 times)"
             echo "  -h, --help           Show this help message"
             echo ""
             echo "Verbose Levels:"
             echo "  (no -v)    Normal output"
-            echo "  -v         Debug level tracing (moderate output, codec at info)"
-            echo "  -vv        Trace level tracing (WARNING: very large output, codec at info)"
-            echo ""
-            echo "Note: By default, codec logging is kept at info level to reduce noise."
-            echo "      Use --debug-codec to include full codec debugging."
+            echo "  -v         Debug level for key scopes"
+            echo "  -vv        Trace level for key scopes"
+            echo "  -vvv       Debug level for all scopes"
+            echo "  -vvvv      Trace level for all scopes (WARNING: very large output)"
+            echo "  -vvvvv     Trace level with codec debugging (WARNING: extremely large output)"
             exit 0
             ;;
         *)
@@ -80,30 +84,16 @@ while [[ $# -gt 0 ]]; do
     esac
 done
 
-# Set trace level based on verbose level
-if [ $VERBOSE_LEVEL -eq 0 ]; then
-    TRACE_LEVEL=""
-elif [ $VERBOSE_LEVEL -eq 1 ]; then
-    TRACE_LEVEL="--trace-all debug"
-    if [ "$DEBUG_CODEC" = false ]; then
-        TRACE_LEVEL="$TRACE_LEVEL --trace-quiet $DEFAULT_QUIET_SCOPES"
-        echo "Verbose mode: DEBUG level (moderate output, codec at info)"
-    else
-        echo "Verbose mode: DEBUG level (including codec)"
-    fi
-elif [ $VERBOSE_LEVEL -ge 2 ]; then
-    TRACE_LEVEL="--trace-all trace"
-    if [ "$DEBUG_CODEC" = false ]; then
-        TRACE_LEVEL="$TRACE_LEVEL --trace-quiet $DEFAULT_QUIET_SCOPES"
-        echo "Verbose mode: TRACE level (WARNING: very large output, codec at info)"
-    else
-        echo "Verbose mode: TRACE level (WARNING: EXTREMELY large output, including codec)"
-    fi
-fi
-
-# Set verbose flag for fuzzer
-if [ $VERBOSE_LEVEL -gt 0 ]; then
-    VERBOSE="--verbose"
+# Show verbose level if enabled
+if [ -n "$VERBOSE_FLAGS" ]; then
+    VERBOSE_COUNT=$(echo "$VERBOSE_FLAGS" | grep -o "\-v" | wc -l)
+    case $VERBOSE_COUNT in
+        1) echo "Verbose mode: Debug level for key scopes" ;;
+        2) echo "Verbose mode: Trace level for key scopes" ;;
+        3) echo "Verbose mode: Debug level for all scopes" ;;
+        4) echo "Verbose mode: Trace level for all scopes (WARNING: very large output)" ;;
+        5) echo "Verbose mode: Trace level with codec debugging (WARNING: extremely large output)" ;;
+    esac
 fi
 
 # Colors for output
@@ -266,7 +256,7 @@ trap cleanup EXIT INT TERM
 # Start the target server in background
 echo "Starting target server..."
  
-$TARGET_BIN $TRACE_LEVEL --socket "$SOCKET_PATH" &
+$TARGET_BIN $VERBOSE_FLAGS --socket "$SOCKET_PATH" --exit-on-disconnect &
 TARGET_PID=$!
 
 # Wait for target to be ready
@@ -301,7 +291,7 @@ $FUZZER_BIN \
     --blocks "$NUM_BLOCKS" \
     $SEED \
     $OUTPUT_FILE \
-    $VERBOSE
+    $VERBOSE_FLAGS
 
 FUZZER_EXIT_CODE=$?
 
