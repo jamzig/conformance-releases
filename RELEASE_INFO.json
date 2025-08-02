@@ -1,9 +1,9 @@
 {
     "type": "jam-conformance-release",
-    "date": "202507302359",
-    "git_sha": "76d5ed7",
+    "date": "202508022208",
+    "git_sha": "842847c",
     "git_branch": "refactor",
-    "build_time": "2025-07-30T22:03:59Z",
+    "build_time": "2025-08-02T20:11:17Z",
     "build_host": "fedora",
     "build_host_target": "aarch64_linux",
     "zig_version": "0.14.1",
