@@ -1,10 +1,10 @@
 {
     "type": "jam-conformance-release",
-    "date": "202508091226",
-    "git_sha": "f9bdf31",
+    "date": "202508101344",
+    "git_sha": "54a970c",
     "graypaper_version": "v0.6.7",
     "git_branch": "jamzig-update-v0.6.7",
-    "build_time": "2025-08-09T10:26:37Z",
+    "build_time": "2025-08-10T11:44:47Z",
     "build_host": "fedora",
     "build_host_target": "aarch64_linux",
     "zig_version": "0.14.1",
