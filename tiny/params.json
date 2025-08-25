@@ -111,7 +111,7 @@
     },
     "GT": {
       "name": "total_gas_alloc_accumulation",
-      "value": 3500000000,
+      "value": 20000000,
       "type": "u64",
       "description": "The total gas allocated across all cores for Accumulation"
     },
@@ -153,7 +153,7 @@
     },
     "WB": {
       "name": "max_work_package_size_with_extrinsics",
-      "value": 12582912,
+      "value": 13794305,
       "type": "u32",
       "description": "The maximum size of an encoded work-package together with its extrinsic data and import implications, in octets"
     },

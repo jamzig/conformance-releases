@@ -153,7 +153,7 @@
     },
     "WB": {
       "name": "max_work_package_size_with_extrinsics",
-      "value": 12582912,
+      "value": 13794305,
       "type": "u32",
       "description": "The maximum size of an encoded work-package together with its extrinsic data and import implications, in octets"
     },
