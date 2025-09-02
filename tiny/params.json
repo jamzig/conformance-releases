@@ -105,7 +105,7 @@
     },
     "GR": {
       "name": "gas_alloc_refine",
-      "value": 5000000000,
+      "value": 1000000000,
       "type": "u64",
       "description": "The total gas allocated for a work-package Refine logic"
     },
@@ -207,7 +207,7 @@
     },
     "WE": {
       "name": "erasure_coded_piece_size",
-      "value": 684,
+      "value": 4,
       "type": "u32",
       "description": "The basic size of erasure-coded pieces in octets"
     },
