@@ -3,19 +3,19 @@
   "parameters": {
     "C": {
       "name": "core_count",
-      "value": 341,
+      "value": 2,
       "type": "u16",
       "description": "The total number of cores"
     },
     "V": {
       "name": "validators_count",
-      "value": 1023,
+      "value": 6,
       "type": "u16",
       "description": "The total number of validators"
     },
     "V_s": {
       "name": "validators_super_majority",
-      "value": 683,
+      "value": 5,
       "type": "u32",
       "description": "The number of validators required for a super-majority"
     },
@@ -27,13 +27,13 @@
     },
     "E": {
       "name": "epoch_length",
-      "value": 600,
+      "value": 12,
       "type": "u32",
       "description": "The number of slots in an epoch"
     },
     "Y": {
       "name": "ticket_submission_end_epoch_slot",
-      "value": 500,
+      "value": 10,
       "type": "u32",
       "description": "The number of slots into an epoch at which ticket-submission ends"
     },
@@ -45,7 +45,7 @@
     },
     "R": {
       "name": "validator_rotation_period",
-      "value": 10,
+      "value": 4,
       "type": "u16",
       "description": "The rotation period of validator-core assignments, in timeslots"
     },
@@ -75,7 +75,7 @@
     },
     "D": {
       "name": "preimage_expungement_period",
-      "value": 19200,
+      "value": 32,
       "type": "u32",
       "description": "The period in timeslots after which an unreferenced preimage may be expunged"
     },
@@ -105,13 +105,13 @@
     },
     "GR": {
       "name": "gas_alloc_refine",
-      "value": 5000000000,
+      "value": 1000000000,
       "type": "u64",
       "description": "The total gas allocated for a work-package Refine logic"
     },
     "GT": {
       "name": "total_gas_alloc_accumulation",
-      "value": 3500000000,
+      "value": 20000000,
       "type": "u64",
       "description": "The total gas allocated across all cores for Accumulation"
     },
@@ -177,13 +177,13 @@
     },
     "K": {
       "name": "max_tickets_per_extrinsic",
-      "value": 16,
+      "value": 3,
       "type": "u16",
       "description": "The maximum number of tickets which may be submitted in a single extrinsic"
     },
     "N": {
       "name": "max_ticket_entries_per_validator",
-      "value": 2,
+      "value": 3,
       "type": "u16",
       "description": "The number of ticket entries per validator"
     },
@@ -207,13 +207,13 @@
     },
     "WE": {
       "name": "erasure_coded_piece_size",
-      "value": 684,
+      "value": 4,
       "type": "u32",
       "description": "The basic size of erasure-coded pieces in octets"
     },
     "WP": {
       "name": "erasure_coded_pieces_per_segment",
-      "value": 6,
+      "value": 1026,
       "type": "u32",
       "description": "The number of erasure-coded pieces in a segment"
     },
