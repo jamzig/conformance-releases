@@ -81,7 +81,7 @@
     },
     "L": {
       "name": "max_lookup_anchor_age",
-      "value": 14400,
+      "value": 24,
       "type": "u32",
       "description": "The maximum age in timeslots of the lookup anchor"
     },
