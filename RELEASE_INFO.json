@@ -1,10 +1,10 @@
 {
     "type": "jam-conformance-release",
-    "date": "202509181840",
-    "git_sha": "f28267b",
+    "date": "202509201338",
+    "git_sha": "197ffdc3",
     "graypaper_version": "v0.7.0",
     "git_branch": "update-v0.7.0",
-    "build_time": "2025-09-18T16:42:13Z",
+    "build_time": "2025-09-20T11:38:44Z",
     "build_host": "fedora",
     "build_host_target": "aarch64_linux",
     "zig_version": "0.14.1",

@@ -1,5 +1,5 @@
 {
-  "params_type": "TINY",
+  "params_type": "FULL",
   "parameters": {
     "C": {
       "name": "core_count",
