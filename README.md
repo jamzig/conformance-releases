@@ -4,9 +4,9 @@ This repository contains the latest JamZig⚡ conformance testing binaries for v
 
 ## Build Information
 
-- **JamZig⚡ Code GIT_SHA:** `d297d12`
-- **Graypaper Version:** `v0.7.1`
-- **Build Date:** `2025-12-18T01:22:34Z`
+- **JamZig⚡ Code GIT_SHA:** `250202b`
+- **Graypaper Version:** `v0.7.2`
+- **Build Date:** `2025-12-18T18:33:16Z`
 
 ## Contents
 
