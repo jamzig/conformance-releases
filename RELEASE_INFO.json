@@ -1,14 +1,14 @@
 {
     "type": "jam-conformance-release",
-    "date": "202512181931",
-    "git_sha": "250202b",
+    "date": "202601031513",
+    "git_sha": "3969c46",
     "graypaper_version": "v0.7.2",
     "git_branch": "main",
-    "build_time": "2025-12-18T18:33:16Z",
+    "build_time": "2026-01-03T14:14:17Z",
     "build_host": "bitgnosys-mac-2.local",
     "build_host_target": "aarch64_macos",
     "zig_version": "0.14.1",
-    "parallel_version": "GNU parallel 20251122",
+    "parallel_version": "GNU parallel 20251222",
     "platforms": [
         "linux/x86_64",
         "linux/aarch64",
