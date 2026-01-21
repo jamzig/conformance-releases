@@ -1,10 +1,10 @@
 {
     "type": "jam-conformance-release",
-    "date": "202601112206",
-    "git_sha": "8b2d14b",
+    "date": "202601210144",
+    "git_sha": "8b00996",
     "graypaper_version": "v0.7.2",
     "git_branch": "main",
-    "build_time": "2026-01-11T21:08:30Z",
+    "build_time": "2026-01-21T00:47:48Z",
     "build_host": "bitgnosys-mac-2.local",
     "build_host_target": "aarch64_macos",
     "zig_version": "0.14.1",
